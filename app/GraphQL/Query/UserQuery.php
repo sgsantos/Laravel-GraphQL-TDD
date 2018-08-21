@@ -12,7 +12,7 @@ class UserQuery extends Query
 {
     protected $attributes = [
         'name' => 'UserQuery',
-        'description' => 'Muestra un usuario dado el id'
+        'description' => 'Show a user given the id'
     ];
 
     public function type()
@@ -25,7 +25,7 @@ class UserQuery extends Query
         return [
             'id' => [
                 'type' => Type::nonNull(Type::int()),
-                'description' => "Identificador del usuario al que se quiere acceder"
+                'description' => "Identifier of the user to be accessed"
             ]
         ];
     }

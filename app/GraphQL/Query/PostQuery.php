@@ -12,7 +12,7 @@ class PostQuery extends Query
 {
     protected $attributes = [
         'name' => 'PostQuery',
-        'description' => 'Muestra un post dado el id'
+        'description' => 'Show a post given the id'
     ];
 
     public function type()
@@ -25,7 +25,7 @@ class PostQuery extends Query
         return [
             'id' => [
                 'type' => Type::nonNull(Type::int()),
-                'description' => "Identificador del post al que se quiere acceder"
+                'description' => "Identifier of the post to which you want to access"
             ]
         ];
     }

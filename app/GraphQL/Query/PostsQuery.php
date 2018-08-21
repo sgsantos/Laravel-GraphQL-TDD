@@ -13,7 +13,7 @@ class PostsQuery extends Query
 {
     protected $attributes = [
         'name' => 'PostsQuery',
-        'description' => 'Muestra todos los posts'
+        'description' => 'Show all posts'
     ];
 
     public function type()

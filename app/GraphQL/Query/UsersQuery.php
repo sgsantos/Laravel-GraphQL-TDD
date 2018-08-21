@@ -12,7 +12,7 @@ class UsersQuery extends Query
 {
     protected $attributes = [
         'name' => 'UsersQuery',
-        'description' => 'Muestra todos los usuarios'
+        'description' => 'Show all users'
     ];
 
     public function type()
