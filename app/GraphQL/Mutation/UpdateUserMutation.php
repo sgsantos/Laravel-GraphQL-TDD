@@ -24,7 +24,7 @@ class UpdateUserMutation extends Mutation
     {
         return [
             'id' => [
-                'type' => Type::int(),
+                'type' => Type::nonNull(Type::int()),
                 'description' => 'User identifier'
             ],
             'name' => [
@@ -53,7 +53,6 @@ class UpdateUserMutation extends Mutation
             return null;
         }
 
-        // update password user
         $password = isset($args['password'])
             ? array_merge($args, ['password' => $args['password']])
             : $args;

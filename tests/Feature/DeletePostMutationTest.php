@@ -102,7 +102,7 @@ class DeletePostMutationTest extends TestCase
             new Mutation(
                 'deletePost',
                 [
-                    'id' => 4 //$faker->numberBetween(0,50),
+                    'id' => 4 //$faker->numberBetween(1,50),
                 ],
                 [
                     'id',
@@ -119,10 +119,14 @@ class DeletePostMutationTest extends TestCase
 
         if(Str::contains($actual, $expectedPostNull))
         {
+            // Esto muestra la mutación que se está eliminando...
+            echo json_encode($mutation);
             $this->assertTrue(false, "El Post no se ha eliminado (DeletePostMutation Failed), post null");
         }
         elseif (Str::contains($actual, $expectedErrors))
         {
+            // Esto muestra la mutación que se está eliminando...
+            echo json_encode($mutation);
             $this->assertTrue(false, "El post no se ha eliminado (DeletePostMutation Failed), existen errores en los datos");
         }
         else{

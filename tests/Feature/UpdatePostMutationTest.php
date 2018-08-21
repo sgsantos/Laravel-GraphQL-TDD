@@ -214,19 +214,20 @@ class UpdatePostMutationTest extends TestCase
             )
         );
 
-//        echo json_encode($mutation);
-//        die;
-
         $actual = json_encode($mutation);
         $expectedPostNull = json_encode(["updatePost" => null]);
         $expectedErrors = json_encode("errors");
 
         if(Str::contains($actual, $expectedPostNull))
         {
+            // Esto muestra la mutación que se está actualizando...
+            echo json_encode($mutation);
             $this->assertTrue(false, "El Post no se ha actualizado (UpdatePostMutation Failed), post null");
         }
         elseif (Str::contains($actual, $expectedErrors))
         {
+            // Esto muestra la mutación que se está actualizando...
+            echo json_encode($mutation);
             $this->assertTrue(false, "El post no se ha actualizado (UpdatePostMutation Failed), existen errores en los datos");
         }
         else{
