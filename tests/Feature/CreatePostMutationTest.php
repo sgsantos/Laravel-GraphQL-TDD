@@ -185,10 +185,14 @@ class CreatePostMutationTest extends TestCase
 
         if(Str::contains($actual, $expectedPostNull))
         {
+            // Esto muestra la mutación que se está creando...
+            echo json_encode($mutation);
             $this->assertTrue(false, "El Post no se ha creado (CreatePostMutation Failed), post null");
         }
         elseif (Str::contains($actual, $expectedErrors))
         {
+            // Esto muestra la mutación que se está creando...
+            echo json_encode($mutation);
             $this->assertTrue(false, "El post no se ha creado (CreatePostMutation Failed), existen errores en los datos");
         }
         else{
