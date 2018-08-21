@@ -2,14 +2,13 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\WithoutMiddleware;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Contracts\Console\Kernel;
-
+use Faker\Factory as Faker;
 use Illuminate\Support\Str;
 use KunicMarko\GraphQLTest\Bridge\Laravel\TestCase;
 use KunicMarko\GraphQLTest\Operation\Query;
+
+use App\GraphQL\Query\UsersQuery;
 
 class UsersQueryTest extends TestCase
 {
@@ -30,20 +29,37 @@ class UsersQueryTest extends TestCase
     }
 
     /**
-     * A basic test example.
-     *
-     * @return void
+     * Función test modelo para probar el type de un Query.
      */
-    public function testExample()
+    public function testType()
     {
-        $this->assertTrue(true);
+        $usersQuery = new UsersQuery();
+        if($usersQuery->type() != '[UserType]')
+        {
+            $this->assertTrue(false, "El tipo debe ser una lista de UserType.");
+        }
+        else
+        {
+            $this->assertTrue(true, "El tipo es una lista de UserType.");
+        }
+
     }
 
-    protected function setUp()
+    /**
+     * Función test modelo para probar los argumentos de un Query.
+     */
+    public function testArgs()
     {
-        $this->setDefaultHeaders([
-            'Content-Type' => 'application/json',
-        ]);
+        $usersQuery = new UsersQuery();
+
+        if(sizeof($usersQuery->args()) > 0)
+        {
+            $this->assertTrue(false, "Esta Query no espera parámetros, FAILED.");
+        }
+        else
+        {
+            $this->assertTrue(true, "Se ejecutó correctamente");
+        }
     }
 
     public function testUsersQuery(): void
@@ -61,20 +77,20 @@ class UsersQueryTest extends TestCase
             )
         );
 
-        // Esto muestra la query que se está creando...
-        echo json_encode($query);
-
         $actual = json_encode($query);
         $expectedUserNull = json_encode(["users" => null]);
         $expectedErrors = json_encode("errors");
 
-
         if(Str::contains($actual, $expectedUserNull))
         {
+            // Esto muestra la query que se está listando...
+            echo json_encode($query);
             $this->assertTrue(false, "Los usuarios no se han mostrado (UsersQuery Failed), usuarios null");
         }
         elseif (Str::contains($actual, $expectedErrors))
         {
+            // Esto muestra la query que se está listando...
+            echo json_encode($query);
             $this->assertTrue(false, "Los usuarios no se han mostrado (UsersQuery Failed), existen errores en los datos");
         }
         else{

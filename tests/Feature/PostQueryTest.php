@@ -117,10 +117,14 @@ class PostQueryTest extends TestCase
 
         if(Str::contains($actual, $expectedPostNull))
         {
+            // Esto muestra el Query que se está listando...
+            echo json_encode($query);
             $this->assertTrue(false, "El post no se ha mostrado (PostQuery FAILED), post null.");
         }
         elseif (Str::contains($actual, $expectedErrors))
         {
+            // Esto muestra el Query que se está listando...
+            echo json_encode($query);
             $this->assertTrue(false, "El post no se ha mostrado (PostQuery FAILED), existen errores en los datos enviados.");
         }
         else
