@@ -12,7 +12,7 @@ class DeleteUserMutation extends Mutation
 {
     protected $attributes = [
         'name' => 'DeleteUserMutation',
-        'description' => 'Elimina un usuario dado el id'
+        'description' => 'Delete a user given the id'
     ];
 
     public function type()
@@ -25,7 +25,7 @@ class DeleteUserMutation extends Mutation
         return [
             'id' => [
                 'type' => Type::int(),
-                'description' => 'Identificador del usuario que se quiere eliminar'
+                'description' => 'Identifier of the user to be deleted'
             ]
         ];
     }

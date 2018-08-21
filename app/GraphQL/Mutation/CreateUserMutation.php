@@ -12,7 +12,7 @@ class CreateUserMutation extends Mutation
 {
     protected $attributes = [
         'name' => 'CreateUserMutation',
-        'description' => 'Crea un usuario'
+        'description' => 'Create a user'
     ];
 
     public function type()
@@ -25,16 +25,16 @@ class CreateUserMutation extends Mutation
         return [
             'name' => [
                 'type' => Type::nonNull(Type::string()),
-                'description' => 'Nombre del usuario'
+                'description' => 'Name of the user'
             ],
             'email' => [
                 'type' => Type::nonNull(Type::string()),
-                'description' => 'Email del usuario',
+                'description' => 'Email of the user',
                 'rules' => ['email', 'unique:users']
             ],
             'password' => [
                 'type' => Type::nonNull(Type::string()),
-                'description' => 'Password del usuario',
+                'description' => 'Password of the user',
                 'rules' => ['min:4']
             ]
         ];

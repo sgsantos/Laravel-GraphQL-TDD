@@ -12,7 +12,7 @@ class UpdateUserMutation extends Mutation
 {
     protected $attributes = [
         'name' => 'UpdateUserMutation',
-        'description' => 'Actualiza un usuario dado el id y los parámetros a modificar'
+        'description' => 'Update a user given the id and the parameters to modify'
     ];
 
     public function type()
@@ -25,20 +25,20 @@ class UpdateUserMutation extends Mutation
         return [
             'id' => [
                 'type' => Type::int(),
-                'description' => 'Identificador del usuario'
+                'description' => 'Identificator of the user'
             ],
             'name' => [
                 'type' => Type::string(),
-                'description' => 'Nombre del usuario'
+                'description' => 'Name of the user'
             ],
             'email' => [
                 'type' => Type::string(),
-                'description' => 'Email del usuario',
+                'description' => 'Email of the user',
                 'rules' => ['email', 'unique:users']
             ],
             'password' => [
                 'type' => Type::string(),
-                'description' => 'Password del usuario',
+                'description' => 'Password of the user',
                 'rules' => ['min:4']
             ]
         ];

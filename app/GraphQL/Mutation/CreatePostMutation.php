@@ -12,7 +12,7 @@ class CreatePostMutation extends Mutation
 {
     protected $attributes = [
         'name' => 'CreatePostMutation',
-        'description' => 'Crea un post'
+        'description' => 'Create a post'
     ];
 
     public function type()
@@ -25,15 +25,15 @@ class CreatePostMutation extends Mutation
         return [
             'user_id' => [
                 'type' => Type::nonNull(Type::int()),
-                'description' => 'Identificador del usuario que escribió el post'
+                'description' => 'Identifier of the user who wrote the post'
             ],
             'title' => [
                 'type' => Type::nonNull(Type::string()),
-                'description' => 'Título del post'
+                'description' => 'Title of the post'
             ],
             'body' => [
                 'type' => Type::string(),
-                'description' => 'Cuerpo del post'
+                'description' => 'Body of the post'
             ]
         ];
     }

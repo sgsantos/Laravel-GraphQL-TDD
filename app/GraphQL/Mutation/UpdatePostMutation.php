@@ -12,7 +12,7 @@ class UpdatePostMutation extends Mutation
 {
     protected $attributes = [
         'name' => 'UpdatePostMutation',
-        'description' => 'Actualiza un post dado el id y los parámetros a modificar'
+        'description' => 'Update a post given the id and the parameters to modify'
     ];
 
     public function type()
@@ -25,19 +25,19 @@ class UpdatePostMutation extends Mutation
         return [
             'id' => [
                 'type' => Type::nonNull(Type::int()),
-                'description' => 'Identificador del Post'
+                'description' => 'Identifier of the Post'
             ],
             'user_id' => [
                 'type' => Type::int(),
-                'description' => 'Identificador del usuario que escribió el post'
+                'description' => 'Identifier of the user who wrote the post'
             ],
             'title' => [
                 'type' => Type::string(),
-                'description' => 'Título del post'
+                'description' => 'Title of the post'
             ],
             'body' => [
                 'type' => Type::string(),
-                'description' => 'Cuerpo del post'
+                'description' => 'Body of the post'
             ]
         ];
     }

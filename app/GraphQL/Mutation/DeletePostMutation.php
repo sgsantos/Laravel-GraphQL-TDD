@@ -12,7 +12,7 @@ class DeletePostMutation extends Mutation
 {
     protected $attributes = [
         'name' => 'DeletePostMutation',
-        'description' => 'Elimina un post dado el id'
+        'description' => 'Delete a post given the id'
     ];
 
     public function type()
@@ -25,7 +25,7 @@ class DeletePostMutation extends Mutation
         return [
             'id' => [
                 'type' => Type::nonNull(Type::int()),
-                'description' => "Identificador del post que se quiere eliminar"
+                'description' => "Identifier of the post to be deleted"
             ]
         ];
     }
