@@ -2,8 +2,10 @@
 Ejemplo de como usar la técnica de desarrollo guiado por pruebas en un API con GraphQL sobre Laravel.
 
 ## Iniciando el proyecto
-composer update
+Para iniciar el proyecto, entre en la carpeta del proyecto y escriba en un terminal:
+``` composer update ```
 
+######################################################
 
 # Casos de prueba para GraphQL en Laravel
 
