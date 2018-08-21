@@ -10,7 +10,7 @@ class PostType extends BaseType
 {
     protected $attributes = [
         'name' => 'PostType',
-        'description' => 'Tipo de dato para los elementos Post'
+        'description' => 'Data type for post elements'
     ];
 
     public function fields()
@@ -18,19 +18,19 @@ class PostType extends BaseType
         return [
             'id' => [
                 'type' => Type::nonNull(Type::int()),
-                'description' => 'Identificador del Post'
+                'description' => 'Identifier of the post'
             ],
             'user_id' => [
                 'type' => Type::nonNull(Type::int()),
-                'description' => 'Identificador del usuario que escribió el Post'
+                'description' => 'Identifier of the user who wrote the post'
             ],
             'title' => [
                 'type' => Type::nonNull(Type::string()),
-                'description' => 'Título del Post'
+                'description' => 'Title of the post'
             ],
             'body' => [
                 'type' => Type::string(),
-                'description' => 'Cuerpo del Post'
+                'description' => 'Body of the post'
             ]
         ];
     }

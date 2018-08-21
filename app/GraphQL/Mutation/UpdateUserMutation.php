@@ -25,20 +25,20 @@ class UpdateUserMutation extends Mutation
         return [
             'id' => [
                 'type' => Type::int(),
-                'description' => 'Identificator of the user'
+                'description' => 'User identifier'
             ],
             'name' => [
                 'type' => Type::string(),
-                'description' => 'Name of the user'
+                'description' => "User's name"
             ],
             'email' => [
                 'type' => Type::string(),
-                'description' => 'Email of the user',
+                'description' => "User's email",
                 'rules' => ['email', 'unique:users']
             ],
             'password' => [
                 'type' => Type::string(),
-                'description' => 'Password of the user',
+                'description' => "User's password",
                 'rules' => ['min:4']
             ]
         ];

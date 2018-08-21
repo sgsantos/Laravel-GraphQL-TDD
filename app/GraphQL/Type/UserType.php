@@ -10,7 +10,7 @@ class UserType extends BaseType
 {
     protected $attributes = [
         'name' => 'UserType',
-        'description' => 'Tipo de dato para los elementos User'
+        'description' => 'Data type for User elements'
     ];
 
     public function fields()
@@ -18,27 +18,27 @@ class UserType extends BaseType
         return [
             'id' => [
                 'type' => Type::nonNull(Type::int()),
-                'description' => 'Identificador del usuario'
+                'description' => 'User identifier'
             ],
             'name' => [
                 'type' => Type::nonNull(Type::string()),
-                'description' => 'Nombre del usuario'
+                'description' => "User's name"
             ],
             'email' => [
                 'type' => Type::string(),
-                'description' => 'Email del usuario'
+                'description' => "User's email"
             ],
             'password' => [
                 'type' => Type::string(),
-                'description' => 'Password del usuario'
+                'description' => "User's password"
             ],
             'posts' => [
                 'type' => Type::listOf(GraphQL::type('PostType')),
-                'description' => 'Lista de posts del usuario'
+                'description' => "List of user's posts"
             ],
             'updated_at' => [
                 'type' => Type::string(),
-                'description' => 'Fecha de ctualización del usuario'
+                'description' => 'Date of user update'
             ]
         ];
     }
