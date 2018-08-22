@@ -97,13 +97,11 @@ class PostQueryTest extends TestCase
      */
     public function testPostQuery()
     {
-        $id_prueba = "1";
-
         $query = $this->query(
             new Query(
                 'post',
                 [
-                    'id' => $id_prueba
+                    'id' => "5b7dabbbd686a57bb2307912"
                 ],
                 [
                     'id',
@@ -113,10 +111,6 @@ class PostQueryTest extends TestCase
                 ]
             )
         );
-
-        if(!Post::find($id_prueba)){
-            $this->assertTrue(false, "El post con el id propuesto por la función de prueba no existe en la base de datos; cambie el id en la función de prueba.");
-        }
 
         $actual = json_encode($query);
         $expectedPostNull = json_encode(["post" => null]);

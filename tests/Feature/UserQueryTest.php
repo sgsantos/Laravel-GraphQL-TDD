@@ -9,7 +9,6 @@ use KunicMarko\GraphQLTest\Bridge\Laravel\TestCase;
 use KunicMarko\GraphQLTest\Operation\Query;
 
 use App\GraphQL\Query\UserQuery;
-use App\User;
 
 class UserQueryTest extends TestCase
 {
@@ -98,13 +97,11 @@ class UserQueryTest extends TestCase
     public function testUserQuery(): void
     {
 
-        $id_prueba = "1";
-
         $query = $this->query(
             new Query(
                 'user',
                 [
-                    'id' => $id_prueba
+                    'id' => "5b7daba7d686a573a92f2372"
                 ],
                 [
                     'id',
@@ -114,10 +111,6 @@ class UserQueryTest extends TestCase
                 ]
             )
         );
-
-        if(!User::find($id_prueba)){
-            $this->assertTrue(false, "El usuario con el id propuesto por la función de prueba no existe en la base de datos; cambie el id en la función de prueba.");
-        }
 
         $actual = json_encode($query);
         $expectedUserNull = json_encode(["user" => null]);

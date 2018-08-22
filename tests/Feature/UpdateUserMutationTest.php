@@ -9,7 +9,6 @@ use KunicMarko\GraphQLTest\Bridge\Laravel\TestCase;
 use KunicMarko\GraphQLTest\Operation\Mutation;
 
 use App\GraphQL\Mutation\UpdateUserMutation;
-use App\User;
 
 class UpdateUserMutationTest extends TestCase
 {
@@ -214,13 +213,12 @@ class UpdateUserMutationTest extends TestCase
     public function testUptadeUserMutation(): void
     {
         $faker = Faker::create();
-        $id_prueba = "1";
 
         $mutation = $this->mutation(
             new Mutation(
                 'updateUser',
                 [
-                    'id' => $id_prueba,
+                    'id' => "5b7daba7d686a573a92f2372",
                     'name' => $faker->name(),
                     'email' => $faker->unique()->email(),
                     'password' => $faker->password()
@@ -233,11 +231,6 @@ class UpdateUserMutationTest extends TestCase
                 ]
             )
         );
-
-        if(!User::find($id_prueba)){
-            $this->assertTrue(false, "El usuario con el id propuesto por la función de prueba no existe en la base de datos; cambie el id en la función de prueba.");
-        }
-
 
         // Esto muestra la mutación que se está creando...
         echo json_encode($mutation);

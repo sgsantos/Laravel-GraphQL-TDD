@@ -9,7 +9,6 @@ use KunicMarko\GraphQLTest\Bridge\Laravel\TestCase;
 use KunicMarko\GraphQLTest\Operation\Mutation;
 
 use App\GraphQL\Mutation\DeletePostMutation;
-use App\Post;
 
 class DeletePostMutationTest extends TestCase
 {
@@ -99,13 +98,12 @@ class DeletePostMutationTest extends TestCase
     {
         $faker = Faker::create();
 
-        $id_prueba = "4";
 
         $mutation = $this->mutation(
             new Mutation(
                 'deletePost',
                 [
-                    'id' => $id_prueba
+                    'id' => "5b7daf49d686a57eae7b93f2"
                 ],
                 [
                     'id',
@@ -115,10 +113,6 @@ class DeletePostMutationTest extends TestCase
                 ]
             )
         );
-
-        if(!Post::find($id_prueba)){
-            $this->assertTrue(false, "El post con el id propuesto por la función de prueba no existe en la base de datos; cambie el id en la función de prueba.");
-        }
 
         $actual = json_encode($mutation);
         $expectedPostNull = json_encode(["deletePost" => null]);

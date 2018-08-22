@@ -9,7 +9,6 @@ use KunicMarko\GraphQLTest\Bridge\Laravel\TestCase;
 use KunicMarko\GraphQLTest\Operation\Mutation;
 
 use App\GraphQL\Mutation\UpdatePostMutation;
-use App\Post;
 
 class UpdatePostMutationTest extends TestCase
 {
@@ -196,14 +195,13 @@ class UpdatePostMutationTest extends TestCase
     public function testUpdatePostMutation(): void
     {
         $faker = Faker::create();
-        $id_prueba = "1";
 
         $mutation = $this->mutation(
             new Mutation(
                 'updatePost',
                 [
-                    'id' => $id_prueba, //$faker->numberBetween(1,50),
-                    'user_id' => $faker->numberBetween(1,5),
+                    'id' => "5b7dabbbd686a57bb2307912", //$faker->numberBetween(1,50),
+                    'user_id' => "5b7daba7d686a573a92f2372",
                     'title' => $faker->sentence(),
                     'body' => $faker->text()
                 ],
@@ -215,10 +213,6 @@ class UpdatePostMutationTest extends TestCase
                 ]
             )
         );
-
-        if(!Post::find($id_prueba)){
-            $this->assertTrue(false, "El post con el id propuesto por la función de prueba no existe en la base de datos; cambie el id en la función de prueba.");
-        }
 
         $actual = json_encode($mutation);
         $expectedPostNull = json_encode(["updatePost" => null]);

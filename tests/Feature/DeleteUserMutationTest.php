@@ -9,7 +9,6 @@ use KunicMarko\GraphQLTest\Bridge\Laravel\TestCase;
 use KunicMarko\GraphQLTest\Operation\Mutation;
 
 use App\GraphQL\Mutation\DeleteUserMutation;
-use App\User;
 
 class DeleteUserMutationTest extends TestCase
 {
@@ -99,13 +98,12 @@ class DeleteUserMutationTest extends TestCase
     public function testDeleteUserMutation():void
     {
         $faker = Faker::create();
-        $id_prueba = "5";
 
         $mutation = $this->mutation(
             new Mutation(
                 'deleteUser',
                 [
-                    'id' => $id_prueba
+                    'id' => "5b7dafbbd686a57ef14e1d43"
                 ],
                 [
                     'id',
@@ -115,10 +113,6 @@ class DeleteUserMutationTest extends TestCase
                 ]
             )
         );
-
-        if(!User::find($id_prueba)){
-            $this->assertTrue(false, "El usuario con el id propuesto por la función de prueba no existe en la base de datos; cambie el id en la función de prueba.");
-        }
 
         $actual = json_encode($mutation);
         $expectedUserNull = json_encode(["deleteUser" => null]);
