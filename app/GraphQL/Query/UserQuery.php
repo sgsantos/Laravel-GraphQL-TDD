@@ -24,7 +24,7 @@ class UserQuery extends Query
     {
         return [
             'id' => [
-                'type' => Type::nonNull(Type::int()),
+                'type' => Type::nonNull(Type::string()),
                 'description' => "Identifier of the user to be accessed"
             ]
         ];

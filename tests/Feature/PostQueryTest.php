@@ -9,6 +9,7 @@ use KunicMarko\GraphQLTest\Bridge\Laravel\TestCase;
 use KunicMarko\GraphQLTest\Operation\Query;
 
 use App\GraphQL\Query\PostQuery;
+use App\Post;
 
 class PostQueryTest extends TestCase
 {
@@ -80,9 +81,9 @@ class PostQueryTest extends TestCase
         {
             $this->assertTrue(false, "El parámetro id necesita un tipo [type required], FAILED.");
         }
-        elseif($postQuery->args()['id']['type'] != 'Int!')
+        elseif($postQuery->args()['id']['type'] != 'String!')
         {
-            $this->assertTrue(false, "El parámetro id necesita un tipo entero no nulo [type required: int() nonnull], FAILED.");
+            $this->assertTrue(false, "El parámetro id necesita un tipo entero no nulo [type required: string() nonnull], FAILED.");
         }
         else
         {
@@ -96,11 +97,13 @@ class PostQueryTest extends TestCase
      */
     public function testPostQuery()
     {
+        $id_prueba = "1";
+
         $query = $this->query(
             new Query(
                 'post',
                 [
-                    'id' => 1
+                    'id' => $id_prueba
                 ],
                 [
                     'id',
@@ -110,6 +113,10 @@ class PostQueryTest extends TestCase
                 ]
             )
         );
+
+        if(!Post::find($id_prueba)){
+            $this->assertTrue(false, "El post con el id propuesto por la función de prueba no existe en la base de datos; cambie el id en la función de prueba.");
+        }
 
         $actual = json_encode($query);
         $expectedPostNull = json_encode(["post" => null]);

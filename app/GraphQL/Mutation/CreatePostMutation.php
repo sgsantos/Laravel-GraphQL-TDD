@@ -24,7 +24,7 @@ class CreatePostMutation extends Mutation
     {
         return [
             'user_id' => [
-                'type' => Type::nonNull(Type::int()),
+                'type' => Type::nonNull(Type::string()),
                 'description' => 'Identifier of the user who wrote the post'
             ],
             'title' => [

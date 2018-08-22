@@ -9,6 +9,7 @@ use KunicMarko\GraphQLTest\Bridge\Laravel\TestCase;
 use KunicMarko\GraphQLTest\Operation\Mutation;
 
 use App\GraphQL\Mutation\UpdatePostMutation;
+use App\Post;
 
 class UpdatePostMutationTest extends TestCase
 {
@@ -80,9 +81,9 @@ class UpdatePostMutationTest extends TestCase
         {
             $this->assertTrue(false, "El parámetro id necesita un tipo [type required], FAILED.");
         }
-        elseif($updatePostMutation->args()['id']['type'] != 'Int!')
+        elseif($updatePostMutation->args()['id']['type'] != 'String!')
         {
-            $this->assertTrue(false, "El parámetro id necesita un tipo entero no nulo [type required: int() nonnull], FAILED.");
+            $this->assertTrue(false, "El parámetro id necesita un tipo string no nulo [type required: string() nonnull], FAILED.");
         }
         else
         {
@@ -113,9 +114,9 @@ class UpdatePostMutationTest extends TestCase
         {
             $this->assertTrue(false, "El parámetro user_id necesita un tipo [type required], FAILED.");
         }
-        elseif($updatePostMutation->args()['user_id']['type'] != 'Int!' && $updatePostMutation->args()['user_id']['type'] != 'Int')
+        elseif($updatePostMutation->args()['user_id']['type'] != 'String!' && $updatePostMutation->args()['user_id']['type'] != 'String')
         {
-            $this->assertTrue(false, "El parámetro user_id necesita un tipo entero [type required: int()], FAILED.");
+            $this->assertTrue(false, "El parámetro user_id necesita un tipo string [type required: string()], FAILED.");
         }
         else
         {
@@ -195,12 +196,13 @@ class UpdatePostMutationTest extends TestCase
     public function testUpdatePostMutation(): void
     {
         $faker = Faker::create();
+        $id_prueba = "1";
 
         $mutation = $this->mutation(
             new Mutation(
                 'updatePost',
                 [
-                    'id' => 1, //$faker->numberBetween(1,50),
+                    'id' => $id_prueba, //$faker->numberBetween(1,50),
                     'user_id' => $faker->numberBetween(1,5),
                     'title' => $faker->sentence(),
                     'body' => $faker->text()
@@ -213,6 +215,10 @@ class UpdatePostMutationTest extends TestCase
                 ]
             )
         );
+
+        if(!Post::find($id_prueba)){
+            $this->assertTrue(false, "El post con el id propuesto por la función de prueba no existe en la base de datos; cambie el id en la función de prueba.");
+        }
 
         $actual = json_encode($mutation);
         $expectedPostNull = json_encode(["updatePost" => null]);

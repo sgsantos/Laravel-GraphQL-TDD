@@ -24,7 +24,7 @@ class DeletePostMutation extends Mutation
     {
         return [
             'id' => [
-                'type' => Type::nonNull(Type::int()),
+                'type' => Type::nonNull(Type::string()),
                 'description' => "Identifier of the post to be deleted"
             ]
         ];

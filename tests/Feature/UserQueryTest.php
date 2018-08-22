@@ -9,6 +9,7 @@ use KunicMarko\GraphQLTest\Bridge\Laravel\TestCase;
 use KunicMarko\GraphQLTest\Operation\Query;
 
 use App\GraphQL\Query\UserQuery;
+use App\User;
 
 class UserQueryTest extends TestCase
 {
@@ -84,9 +85,9 @@ class UserQueryTest extends TestCase
         {
             $this->assertTrue(false, "El parámetro id necesita un tipo [type required], FAILED.");
         }
-        elseif($userQuery->args()['id']['type'] != 'Int!')
+        elseif($userQuery->args()['id']['type'] != 'String!')
         {
-            $this->assertTrue(false, "El parámetro id necesita un tipo entero no nulo [type required: int() nonnull], FAILED.");
+            $this->assertTrue(false, "El parámetro id necesita un tipo entero no nulo [type required: string() nonnull], FAILED.");
         }
         else
         {
@@ -96,11 +97,14 @@ class UserQueryTest extends TestCase
 
     public function testUserQuery(): void
     {
+
+        $id_prueba = "1";
+
         $query = $this->query(
             new Query(
                 'user',
                 [
-                    'id' => 1
+                    'id' => $id_prueba
                 ],
                 [
                     'id',
@@ -110,6 +114,10 @@ class UserQueryTest extends TestCase
                 ]
             )
         );
+
+        if(!User::find($id_prueba)){
+            $this->assertTrue(false, "El usuario con el id propuesto por la función de prueba no existe en la base de datos; cambie el id en la función de prueba.");
+        }
 
         $actual = json_encode($query);
         $expectedUserNull = json_encode(["user" => null]);

@@ -24,7 +24,7 @@ class DeleteUserMutation extends Mutation
     {
         return [
             'id' => [
-                'type' => Type::nonNull(Type::int()),
+                'type' => Type::nonNull(Type::string()),
                 'description' => 'Identifier of the user to be deleted'
             ]
         ];

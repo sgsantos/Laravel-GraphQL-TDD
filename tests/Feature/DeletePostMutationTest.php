@@ -9,6 +9,7 @@ use KunicMarko\GraphQLTest\Bridge\Laravel\TestCase;
 use KunicMarko\GraphQLTest\Operation\Mutation;
 
 use App\GraphQL\Mutation\DeletePostMutation;
+use App\Post;
 
 class DeletePostMutationTest extends TestCase
 {
@@ -81,9 +82,9 @@ class DeletePostMutationTest extends TestCase
         {
             $this->assertTrue(false, "El parámetro id necesita un tipo [type required], FAILED.");
         }
-        elseif($deletePostMutation->args()['id']['type'] != 'Int!')
+        elseif($deletePostMutation->args()['id']['type'] != 'String!')
         {
-            $this->assertTrue(false, "El parámetro id necesita un tipo entero no nulo [type required: int() nonnull], FAILED.");
+            $this->assertTrue(false, "El parámetro id necesita un tipo entero no nulo [type required: string() nonnull], FAILED.");
         }
         else
         {
@@ -98,11 +99,13 @@ class DeletePostMutationTest extends TestCase
     {
         $faker = Faker::create();
 
+        $id_prueba = "4";
+
         $mutation = $this->mutation(
             new Mutation(
                 'deletePost',
                 [
-                    'id' => 4 //$faker->numberBetween(1,50),
+                    'id' => $id_prueba
                 ],
                 [
                     'id',
@@ -112,6 +115,10 @@ class DeletePostMutationTest extends TestCase
                 ]
             )
         );
+
+        if(!Post::find($id_prueba)){
+            $this->assertTrue(false, "El post con el id propuesto por la función de prueba no existe en la base de datos; cambie el id en la función de prueba.");
+        }
 
         $actual = json_encode($mutation);
         $expectedPostNull = json_encode(["deletePost" => null]);

@@ -24,11 +24,11 @@ class UpdatePostMutation extends Mutation
     {
         return [
             'id' => [
-                'type' => Type::nonNull(Type::int()),
+                'type' => Type::nonNull(Type::string()),
                 'description' => 'Identifier of the Post'
             ],
             'user_id' => [
-                'type' => Type::int(),
+                'type' => Type::string(),
                 'description' => 'Identifier of the user who wrote the post'
             ],
             'title' => [

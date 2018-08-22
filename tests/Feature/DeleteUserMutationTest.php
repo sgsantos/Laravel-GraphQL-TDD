@@ -9,6 +9,7 @@ use KunicMarko\GraphQLTest\Bridge\Laravel\TestCase;
 use KunicMarko\GraphQLTest\Operation\Mutation;
 
 use App\GraphQL\Mutation\DeleteUserMutation;
+use App\User;
 
 class DeleteUserMutationTest extends TestCase
 {
@@ -84,9 +85,9 @@ class DeleteUserMutationTest extends TestCase
         {
             $this->assertTrue(false, "El parámetro id necesita un tipo [type required], FAILED.");
         }
-        elseif($deleteUserMutation->args()['id']['type'] != 'Int!')
+        elseif($deleteUserMutation->args()['id']['type'] != 'String!')
         {
-            $this->assertTrue(false, "El parámetro id necesita un tipo entero no nulo [type required: int() nonnull], FAILED.");
+            $this->assertTrue(false, "El parámetro id necesita un tipo entero no nulo [type required: string() nonnull], FAILED.");
         }
         else
         {
@@ -98,12 +99,13 @@ class DeleteUserMutationTest extends TestCase
     public function testDeleteUserMutation():void
     {
         $faker = Faker::create();
+        $id_prueba = "5";
 
         $mutation = $this->mutation(
             new Mutation(
                 'deleteUser',
                 [
-                    'id' => $faker->numberBetween(6,50)//40// $faker->numberBetween(6,50)
+                    'id' => $id_prueba
                 ],
                 [
                     'id',
@@ -113,6 +115,10 @@ class DeleteUserMutationTest extends TestCase
                 ]
             )
         );
+
+        if(!User::find($id_prueba)){
+            $this->assertTrue(false, "El usuario con el id propuesto por la función de prueba no existe en la base de datos; cambie el id en la función de prueba.");
+        }
 
         $actual = json_encode($mutation);
         $expectedUserNull = json_encode(["deleteUser" => null]);

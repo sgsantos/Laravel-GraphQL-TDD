@@ -79,9 +79,9 @@ class CreatePostMutationTest extends TestCase
         {
             $this->assertTrue(false, "El parámetro user_id necesita un tipo [type required], FAILED.");
         }
-        elseif($createPostMutation->args()['user_id']['type'] != 'Int!')
+        elseif($createPostMutation->args()['user_id']['type'] != 'String!')
         {
-            $this->assertTrue(false, "El parámetro user_id necesita un tipo entero no nulo [type required: int() nonnull], FAILED.");
+            $this->assertTrue(false, "El parámetro user_id necesita un tipo entero no nulo [type required: string() nonnull], FAILED.");
         }
         else
         {
@@ -166,7 +166,7 @@ class CreatePostMutationTest extends TestCase
             new Mutation(
                 'createPost',
                 [
-                    'user_id' => $faker->numberBetween(1,5),
+                    'user_id' => "5b7daba7d686a573a92f2372",
                     'title' => $faker->sentence(),
                     'body' => $faker->text()
                 ],

@@ -24,7 +24,7 @@ class PostQuery extends Query
     {
         return [
             'id' => [
-                'type' => Type::nonNull(Type::int()),
+                'type' => Type::nonNull(Type::string()),
                 'description' => "Identifier of the post to which you want to access"
             ]
         ];
