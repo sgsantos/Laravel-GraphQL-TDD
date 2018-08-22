@@ -17,7 +17,7 @@ class PostType extends BaseType
     {
         return [
             'id' => [
-                'type' => Type::nonNull(Type::int()),
+                'type' => Type::nonNull(Type::string()),
                 'description' => 'Identifier of the post'
             ],
             'user_id' => [

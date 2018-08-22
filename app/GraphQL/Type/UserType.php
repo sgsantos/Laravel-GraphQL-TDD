@@ -17,7 +17,7 @@ class UserType extends BaseType
     {
         return [
             'id' => [
-                'type' => Type::nonNull(Type::int()),
+                'type' => Type::nonNull(Type::string()),
                 'description' => 'User identifier'
             ],
             'name' => [
